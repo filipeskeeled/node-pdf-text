@@ -16,6 +16,7 @@ module.exports = function(path, cb) {
     result.data.Pages.forEach(function(page) {
       var chunks = _(page.Texts).map('R').flatten().map('T').map(decodeURIComponent).value()
       text = text.concat(chunks)
+      console.log("hello");
     })
 
     parser.destroy()
