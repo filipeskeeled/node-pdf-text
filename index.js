@@ -14,9 +14,12 @@ module.exports = function(path, cb) {
 
     //get text on a particular page
     result.data.Pages.forEach(function(page) {
-      var chunks = _(page.Texts).map('R').flatten().map('T').map(decodeURIComponent).value()
-      text = text.concat(chunks)
-      console.log("hello");
+      for (var i = 0; i < page.Texts.length; i++) {
+        text.push({
+          text: decodeURIComponent(page.Texts[i].R[0].T),
+          bold: page.Texts[i].R[0].TS[2]
+        })
+      }
     })
 
     parser.destroy()
